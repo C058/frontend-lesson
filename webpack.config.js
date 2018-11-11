@@ -1,4 +1,5 @@
 // https://qiita.com/tsuuuuu_san/items/582854a4043d8a1db1c9
+const path = require('path');
 module.exports = {
     context: __dirname + '/src',
     entry: {
@@ -16,7 +17,11 @@ module.exports = {
           loader: "babel-loader", 
         }
       ]
-    }
+    },
+    devServer: {
+        contentBase: 'dist',
+        port: 3000
+    },    
   };
 
 // context

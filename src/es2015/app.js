@@ -5,7 +5,8 @@ class Friend extends Person{
       super(name);
     }
     callName() {
-      alert(this.name);
+      // alert(this.name);
+      console.log(this.name);
     }
 }
 
