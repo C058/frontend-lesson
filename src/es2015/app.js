@@ -1,15 +1,11 @@
-import Person from './module/person';
+import Person from './module/parent';
 
-class Friend extends Person{
-    constructor(name) {
-      super(name);
+class Example extends Parent {
+    constructor() {
+      
     }
-    callName() {
-      // alert(this.name);
-      console.log(this.name);
+
+    main() {
+
     }
 }
-
-var friend = new Friend('Ryo');
-
-friend.callName();
