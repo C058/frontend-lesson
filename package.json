@@ -4,7 +4,9 @@
   "main": "index.js",
   "author": "ChihiroYamamoto <1kfm@1k-fm-mac.local>",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "jquery": "^3.3.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.1.5",
     "@babel/polyfill": "^7.0.0",

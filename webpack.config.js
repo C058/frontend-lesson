@@ -1,5 +1,6 @@
 // https://qiita.com/tsuuuuu_san/items/582854a4043d8a1db1c9
 const path = require('path');
+const webpack = require('webpack');
 module.exports = {
     context: __dirname + '/src',
     entry: {
@@ -21,7 +22,20 @@ module.exports = {
     devServer: {
         contentBase: 'dist',
         port: 3000
-    },    
+    },
+    plugins: [
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery'
+      })
+    ],
+    resolve: {
+      extensions: ['.js'],
+      alias: {
+          '$'     : 'jquery',
+      }
+  },
   };
 
 // context

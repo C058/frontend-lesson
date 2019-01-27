@@ -1,11 +1,3 @@
-import Person from './module/parent';
+import TodoList from './module/todoList';
 
-class Example extends Parent {
-    constructor() {
-      
-    }
-
-    main() {
-
-    }
-}
+let list = new TodoList();
