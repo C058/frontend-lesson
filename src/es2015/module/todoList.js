@@ -13,9 +13,11 @@ class TodoList {
 
     bindEvent() {
         this.submitButton.on('click',
+            // 書き方1
             // function() {
             //     this.register2List();
             // }.bind(this)
+            // 書き方2
             () => {
                 if (this.form.val() != "") {
                     this.register2List();
@@ -23,13 +25,17 @@ class TodoList {
             }
         );
         this.list.on('click', this.doneSelector, 
-            // function(event) {
-            //     this.doneFunc(event.target);
-            // }.bind(this)
-            (event) => {
+            // 答え１
+            function(event) {
                 this.doneFunc(event.target);
-            }
+            }.bind(this)
+
+            // 答え２
+            // (event) => {
+            //     this.doneFunc(event.target);
+            // }
         );
+
         this.list.on('click', this.deleteSelector, 
             (event) => {
                 this.deleteFunc(event.target);
@@ -52,6 +58,7 @@ class TodoList {
 
     doneFunc(obj) {
         $(obj).parent().addClass('done');
+        $(obj).prop("disabled", true);
     }
 
     deleteFunc(obj) {

@@ -1,18 +1,5 @@
 class TodoListNext {
-    task() {
-        let tasks = new Array();
-        return {
-                getAllTask :function() {
-                    return tasks;
-                },
-                addTask: function(taskName) {
-                    tasks.push(taskName);
-                },
-                deleteTask: function(taskIndex) {
-                    return tasks.splice(taskIndex,1); // indexから1要素削除
-                 }
-        }
-    }
+
     constructor() {
         this.setParam();
         this.bindEvent();
@@ -32,7 +19,7 @@ class TodoListNext {
         this.submitButton.on('click',
             () => {
                 if (this.form.val() != "") {
-                    this.register2List();
+                    this.addTaskList();
                 }
             }
         );
@@ -49,26 +36,49 @@ class TodoListNext {
 
     }
 
-    register2List() {
-        this.tasks.addTask(this.form.val());
-        var tasks = this.tasks.getAllTask();
-        this.list.empty();
-        var todoList = this.list;
-        $.each(tasks, function(index, val) {
-            todoList.append(generateTodoTag(val));
-        });
-
-        function generateTodoTag(task) {
-            return '<li>'+ task +' <button class="doneTrigger">done</button><button class="deleteTrigger">delete</button></li>'
+    task() {
+        let tasks = new Array();
+        return {
+                getAllTask :function() {
+                    return tasks;
+                },
+                addTask: function(taskName) {
+                    tasks.push(taskName);
+                },
+                deleteTask: function(taskIndex) {
+                    return tasks.splice(taskIndex,1); // indexから1要素削除
+                 }
         }
     }
 
-    doneFunc() {
-        
+    addTaskList() {
+        this.tasks.addTask(this.form.val());
+        this.renderList();
+        this.form.val("");
     }
 
+    renderList() {
+        this.list.empty();
+        var tasks = this.tasks.getAllTask();
+        var todoList = this.list;
+        $.each(tasks, function(index, val) {
+            todoList.append(generateTodoTag(index, val));
+        });
 
-    deleteFunc() {
+        function generateTodoTag(index, task) {
+            return '<li data-sort="'+index+'">'+ task +' <button class="doneTrigger">done</button><button class="deleteTrigger">delete</button></li>'
+        }
+    }
+
+    doneFunc(obj) {
+        $(obj).parent().addClass('done');
+        $(obj).prop("disabled", true);
+    }
+
+    deleteFunc(obj) {
+        var index = $(obj).parent().data('sort');
+        this.tasks.deleteTask(index);
+        this.renderList();
     }
 }
 export default TodoListNext;
