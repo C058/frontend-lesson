@@ -25,13 +25,16 @@ class TodoList {
             }
         );
         this.list.on('click', this.doneSelector, 
-            () => {
-                this.doneFunc();
+            // function(event) {
+            //     this.doneFunc(event.target);
+            // }.bind(this)
+            (event) => {
+                this.doneFunc(event.target);
             }
         );
         this.list.on('click', this.deleteSelector, 
-            () => {
-                this.deleteFunc();
+            (event) => {
+                this.deleteFunc(event.target);
             }
         );
 
@@ -49,12 +52,12 @@ class TodoList {
         return '<li>'+ task +' <button class="doneTrigger">done</button><button class="deleteTrigger">delete</button></li>'
     }
 
-    doneFunc() {
-        console.log('doneFunc');
+    doneFunc(obj) {
+        $(obj).parent().addClass('done');
     }
 
-    deleteFunc() {
-        console.log('deleteFunc');
+    deleteFunc(obj) {
+        $(obj).parent().remove();
     }
 }
 export default TodoList;
