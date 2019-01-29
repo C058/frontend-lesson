@@ -1,5 +1,3 @@
-import Parent from './parent';
-
 class TodoList {
     constructor() {
         this.setParam();
